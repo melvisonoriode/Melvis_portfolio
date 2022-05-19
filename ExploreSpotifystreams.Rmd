@@ -1,0 +1,207 @@
+---
+title: "ExploreSpotify"
+author: "Melvis Onoriode"
+date: '2022-05-18'
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+```
+
+
+```{r}
+spotify<-read.csv("data.csv",sep="#")
+head(spotify)
+spotify1<-mutate(spotify,Year=year(spotify$Date))
+
+year17<-spotify[spotify1$Year==2017,]
+year18<-spotify[spotify1$Year==2018,]
+year19<-spotify[spotify1$Year==2019,]
+year20<-spotify[spotify1$Year==2020,]
+year21<-spotify[spotify1$Year==2021,]
+
+```
+```{r}
+paste("Total Songs in the Database: ",length(unique(spotify1$Track.Name)))
+paste("Total Artists in the Database: ",length(unique(spotify1$Artist)))
+```
+
+```{r}
+# The Total number of Streams of an Artist 
+streams<-aggregate(x=spotify1$Streams,by=list(spotify1$Artist),FUN=sum)
+    colnames(streams)<-c("Artist","Streams")
+    streams<-streams[order(streams$Streams,decreasing=T),]
+    
+    ggplot(data=streams[1:5,],aes(x=Artist,y=Streams,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=Streams),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("Streams")+
+      ggtitle("Streams vs Artists")
+```
+
+
+
+```{r}
+# Number of Appearances of Artist in the 'Corresponding Data'
+artistapp<-as.data.frame(table(spotify1$Artist))
+    colnames(artistapp)<-c("Artist","No._of_Appearance_in_Top_200_Chart")
+    artistapp<-artistapp[order(artistapp$`No._of_Appearance_in_Top_200_Chart`,decreasing=T),]
+    
+    ggplot(data=artistapp[1:5,],aes(x=Artist,y=No._of_Appearance_in_Top_200_Chart,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=No._of_Appearance_in_Top_200_Chart),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("Appearances")+
+      ggtitle("Appearances vs Artists")
+````
+
+```{r}
+#No. of days a song stays in Top 200.
+songs<-spotify$Track.Name
+    artname<-spotify[spotify1$Track.Name==songs,]$Artist
+    days<-data.frame("Artist"=artname,"Song"=songs)
+    days<-aggregate(x=days$Song,by=list(days$Artist,days$Song),FUN=length)
+    days<-as.data.frame(days)
+    colnames(days)<-c("Artist","Song","No._of_Days")
+    days<-days[order(days$No._of_Days,decreasing=T),]
+    
+    ggplot(data=days[1:5,],aes(x=Song,y=No._of_Days,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=No._of_Days),vjust=-0.2,size=3)+
+      xlab("Songs")+
+      ylab("Days in Top 200 Chart")+
+      ggtitle("Days in Top 200 Chart vs Songs")
+```
+
+```{r}
+#No. of days a song stays at No. 1 in Top 200 Charts.
+top<-spotify[spotify1$Position==1,]
+    numeruno<-aggregate(x=top$Position,by=list(top$Track.Name,top$Artist),FUN=sum)
+    colnames(numeruno)<-c("Song","Artist","Days_at_1")
+    numeruno<-numeruno[order(numeruno$`Days_at_1`,decreasing = T),]
+      ggplot(data=numeruno[1:5,],aes(x=Song,y=Days_at_1,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=Days_at_1),vjust=-0.2,size=3)+
+      xlab("Songs")+
+      ylab("Days at #1")+
+      ggtitle("Days at #1 vs Songs")
+```
+  
+
+
+```{r}
+#  Artists with most No. 1 songs
+mostnumerunos<-as.data.frame(table(numeruno$Artist))
+    colnames(mostnumerunos)<-c("Artist","No._of_Songs_at_1")
+    mostnumerunos<-mostnumerunos[order(mostnumerunos$`No._of_Songs_at_1`,decreasing = T),]
+    
+    ggplot(data=mostnumerunos[1:5,],aes(x=Artist,y=No._of_Songs_at_1,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=No._of_Songs_at_1),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("No. of songs at #1")+
+      ggtitle("No. of songs at #1 vs Artists")
+```
+
+```{r}
+# Year 2019 in a Nutshell
+    
+    paste("Total Songs that featured in Top 200 in 2019: ",length(unique(spotify1$Track.Name)))
+    paste("Total Artists that featured in Top 200 in 2019: ",length(unique(spotify1$Artist)))
+    
+    streams<-aggregate(x=spotify1$Streams,by=list(spotify1$Artist),FUN=sum)
+    colnames(streams)<-c("Artist","Streams")
+    streams<-streams[order(streams$Streams,decreasing=T),]
+    
+    ggplot(data=streams[1:5,],aes(x=Artist,y=Streams,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=Streams),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("Streams")+
+      ggtitle("Streams vs Artists")
+    
+    artistapp<-as.data.frame(table(spotify1$Artist))
+    colnames(artistapp)<-c("Artist","No._of_Appearance_in_Top_200_Chart")
+    artistapp<-artistapp[order(artistapp$No._of_Appearance_in_Top_200_Chart,decreasing=T),]
+    
+    ggplot(data=artistapp[1:5,],aes(x=Artist,y=No._of_Appearance_in_Top_200_Chart,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=No._of_Appearance_in_Top_200_Chart),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("Appearances")+
+      ggtitle("Appearances vs Artists")
+    
+    songs<-spotify1$Track.Name
+    artname<-spotify1[spotify1$Track.Name==songs,]$Artist
+    days<-data.frame("Artist"=artname,"Song"=songs)
+    days<-aggregate(x=days$Song,by=list(days$Artist,days$Song),FUN=length)
+    days<-as.data.frame(days)
+    colnames(days)<-c("Artist","Song","No._of_Days")
+    days<-days[order(days$No._of_Days,decreasing=T),]
+    
+    ggplot(data=days[1:5,],aes(x=Song,y=No._of_Days,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=No._of_Days),vjust=-0.2,size=3)+
+      xlab("Songs")+
+      ylab("Days in Top 200 Chart")+
+      ggtitle("Days in Top 200 Chart vs Songs")
+    
+    top<-spotify1[spotify1$Position==1,]
+    numeruno<-aggregate(x=top$Position,by=list(top$Track.Name,top$Artist),FUN=sum)
+    colnames(numeruno)<-c("Song","Artist","Days_at_1")
+    numeruno<-numeruno[order(numeruno$`Days_at_1`,decreasing = T),]
+    
+    ggplot(data=numeruno[1:5,],aes(x=Song,y=Days_at_1,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=Days_at_1),vjust=-0.2,size=3)+
+      xlab("Songs")+
+      ylab("Days at #1")+
+      ggtitle("Days at #1 vs Songs")
+    
+    mostnumerunos<-as.data.frame(table(numeruno$Artist))
+    colnames(mostnumerunos)<-c("Artist","No._of_Songs_at_1")
+    mostnumerunos<-mostnumerunos[order(mostnumerunos$`No._of_Songs_at_1`,decreasing = T),]
+    
+    ggplot(data=mostnumerunos[1:5,],aes(x=Artist,y=No._of_Songs_at_1,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=No._of_Songs_at_1),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("No. of songs at #1")+
+      ggtitle("No. of songs at #1 vs Artists")
+    
+    numerunodays<-aggregate(x=numeruno$Days_at_1,by=list(numeruno$Artist),FUN=sum)
+    colnames(numerunodays)<-c("Artist","Days_at_1")
+    numerunodays<-numerunodays[order(numerunodays$Days_at_1,decreasing=T),]
+    
+    ggplot(data=numerunodays[1:5,],aes(x=Artist,y=Days_at_1,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=Days_at_1),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("Days at #1")+
+      ggtitle("Days at #1 vs Artists")
+    
+    art<-unique(spotify1$Artist)
+    count<-numeric(length(art))
+    for(i in 1:length(art)){
+      count[i]<-length(unique(spotify1[spotify1$Artist==art[i],c("Track.Name")]))
+    }
+    artist<-data.frame(Artist=art,No._of_Songs_in_Top_200=count)
+    artist<-artist[order(artist$No._of_Songs_in_Top_200,decreasing=T),]
+
+    
+    ggplot(data=artist[1:5,],aes(x=Artist,y=No._of_Songs_in_Top_200,fill=Artist))+
+      geom_bar(stat="Identity")+
+      geom_text(aes(label=No._of_Songs_in_Top_200),vjust=-0.2,size=3)+
+      xlab("Artists")+
+      ylab("No. of songs in Top 200")+
+      ggtitle("No. of songs in Top 200 vs Artists")
+```
