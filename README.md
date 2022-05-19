@@ -7,7 +7,7 @@ The columns in this dataset were deliberately separated by "#" since track names
 
 The dataset contains the following columns
 
-1. Position - position of the track in the top 200;  
+1.Position - position of the track in the top 200;  
 2.Track Name - track name;  
 3.Artist - the performer of the track;  
 4.Streams- the number of listens;  
