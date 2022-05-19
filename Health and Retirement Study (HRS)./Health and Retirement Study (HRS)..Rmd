@@ -1,0 +1,106 @@
+---
+title: "Health and Retirement Study (HRS)."
+author: "Melvis Onoriode"
+date: "03/02/2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(psych)
+library(plotly)
+library(ISLR2)
+library(leaps)
+```
+## Question 1 
+## Read the data file and report any missing values.
+```{r}
+dataFile <-read.csv("HRSexpend.csv", header=TRUE)
+dim(dataFile)
+sum(is.na(dataFile))
+```
+
+## Question 2
+```{r}
+dataFile <- na.omit(dataFile)
+str(dataFile)
+dim(dataFile)
+```
+## Question 3
+```{r}
+comment(dataFile$R9AGEY_E) <- c("Age at interview")
+comment(dataFile$R9MSTAT) <- c("Current marital status with partnership")
+comment(dataFile$H9ITOT) <- c("Total household income for rospondent and Spouse")
+comment(dataFile$R9BMI) <- c("BMI")
+comment(dataFile$R9DRINK) <- c("Drinking Behaviour")
+comment(dataFile$R9CONDE) <- c("Sum of condition ever had")
+comment(dataFile$RAEDYRS) <- c("Years of education")
+comment(dataFile$R8CESD) <- c("CESD score")
+comment(dataFile$R9HOSP) <-  c("Hospital stay in the previous 2 years")
+comment(dataFile$R9NRSHOM) <- c("Nursing home stay in the previous 2 year")
+comment(dataFile$R9DOCTOR) <- c("Doctors visit in the previous 2 year")
+comment(dataFile$R9HOMCAR) <- c("Home health care")
+comment(dataFile$R9HIGOV) <- c ("Covered by federal government health insurance program")
+comment(dataFile$R1GOVMR) <- c("Has government plan medicare")
+str(dataFile)
+
+```
+## Question 4
+```{r}
+dataFile1 <- dataFile[,-c(1)]
+set.seed(1)
+trainingData <- sample(c(TRUE, FALSE), nrow(dataFile1), replace = TRUE)
+sum(trainingData)
+
+testData <- (!trainingData)
+sum(testData)
+
+```
+## Question 5
+```{r}
+pairs(~ R9OOPMD + R9AGEY_E + H9ITOT + R9BMI + R9CONDE+ R8CESD, data = dataFile1, main = "Scatter plot matrix", pch = 19, col = 4)
+
+dataFile1.cor <- cor(dataFile1)
+dataFile1.cor
+```
+
+## Question 6
+```{r}
+regressionFit <- regsubsets(R9OOPMD~ ., data = dataFile1[trainingData,], nvmax =17)
+regressionFitSummary <- summary(regressionFit)
+regressionFitSummary
+
+```
+## Question 7 
+## The Best variable are H9ITOT,R9CONDE, RAEDYRS,R9NRSHOM,R9HOMCAR
+
+
+## Question 8
+```{r}
+test_matrix <- model.matrix(R9OOPMD ~., data = dataFile1[testData,])
+```
+
+```{r}
+validation_error <- rep(NA, 17)
+validation_error
+```
+
+```{r}
+for(i in 1:15){
+  coe <- coef(regressionFit, id =i)
+  coe_1 <- test_matrix[,names(coe)] %% coe
+  validation_error[i] <- mean((dataFile1$R9OOPMD[testData]- coe_1)^2)
+}
+validation_error
+
+```
+## Question 9
+```{r}
+which.min(validation_error)
+coef(regressionFit,3)
+```
+## Question 10
