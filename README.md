@@ -24,7 +24,7 @@ This detailed information allows one to develop models of healthcare use to pred
 3. Fitted regression models using the regsubsets() function from the leaps package and store it as an R object. Showed the summary. 
 4. Create a model matrix from the test data set. Calculate the validation error for the test data set for all the 15 models you got in question 
 
-# [Project 3 : Student Mental Health Visualisation]
+# [Project 3 : Student Mental Health Visualisation](https://github.com/melvisonoriode/Melvis_portfolio/tree/main/student%20Mental%20Health%20Visualization)
 About this file
 This Data set was collected by a survey conducted by Google forms from University student in order to examine their current academic situation and mental health.
 In this Project I would be giving a visualization on how student perform in school vs the state of their mental health.  
