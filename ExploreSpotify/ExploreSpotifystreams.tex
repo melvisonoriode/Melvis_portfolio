@@ -1,0 +1,476 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={ExploreSpotify},
+  pdfauthor={Melvis Onoriode},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{ExploreSpotify}
+\author{Melvis Onoriode}
+\date{2022-05-18}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'ggplot2' was built under R version 4.1.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'dplyr' was built under R version 4.1.2
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(lubridate)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     date, intersect, setdiff, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify}\OtherTok{\textless{}{-}}\FunctionTok{read.csv}\NormalTok{(}\StringTok{"data.csv"}\NormalTok{,}\AttributeTok{sep=}\StringTok{"\#"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(spotify)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Position                              Track.Name           Artist Streams
+## 1        1                                 Starboy       The Weeknd 3135625
+## 2        2                                  Closer The Chainsmokers 3015525
+## 3        3                         Let Me Love You         DJ Snake 2545384
+## 4        4 Rockabye (feat. Sean Paul & Anne-Marie)     Clean Bandit 2356604
+## 5        5                               One Dance            Drake 2259887
+## 6        6                               Fake Love            Drake 2137437
+##         Date
+## 1 2017-01-01
+## 2 2017-01-01
+## 3 2017-01-01
+## 4 2017-01-01
+## 5 2017-01-01
+## 6 2017-01-01
+##                                                                                                 Genre
+## 1                                                ['canadian pop', 'canadian contemporary r&b', 'pop']
+## 2                            ['pop', 'pop dance', 'tropical house', 'edm', 'electropop', 'dance pop']
+## 3                              ['pop', 'electronic trap', 'dance pop', 'edm', 'pop dance', 'pop rap']
+## 4 ['pop', 'uk dance', 'dance pop', 'uk funky', 'tropical house', 'pop dance', 'post-teen pop', 'edm']
+## 5                    ['toronto rap', 'canadian pop', 'canadian hip hop', 'rap', 'pop rap', 'hip hop']
+## 6                    ['toronto rap', 'canadian pop', 'canadian hip hop', 'rap', 'pop rap', 'hip hop']
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify1}\OtherTok{\textless{}{-}}\FunctionTok{mutate}\NormalTok{(spotify,}\AttributeTok{Year=}\FunctionTok{year}\NormalTok{(spotify}\SpecialCharTok{$}\NormalTok{Date))}
+
+\NormalTok{year17}\OtherTok{\textless{}{-}}\NormalTok{spotify[spotify1}\SpecialCharTok{$}\NormalTok{Year}\SpecialCharTok{==}\DecValTok{2017}\NormalTok{,]}
+\NormalTok{year18}\OtherTok{\textless{}{-}}\NormalTok{spotify[spotify1}\SpecialCharTok{$}\NormalTok{Year}\SpecialCharTok{==}\DecValTok{2018}\NormalTok{,]}
+\NormalTok{year19}\OtherTok{\textless{}{-}}\NormalTok{spotify[spotify1}\SpecialCharTok{$}\NormalTok{Year}\SpecialCharTok{==}\DecValTok{2019}\NormalTok{,]}
+\NormalTok{year20}\OtherTok{\textless{}{-}}\NormalTok{spotify[spotify1}\SpecialCharTok{$}\NormalTok{Year}\SpecialCharTok{==}\DecValTok{2020}\NormalTok{,]}
+\NormalTok{year21}\OtherTok{\textless{}{-}}\NormalTok{spotify[spotify1}\SpecialCharTok{$}\NormalTok{Year}\SpecialCharTok{==}\DecValTok{2021}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Total Songs in the Database: "}\NormalTok{,}\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Track.Name)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Total Songs in the Database:  5497"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{paste}\NormalTok{(}\StringTok{"Total Artists in the Database: "}\NormalTok{,}\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Artist)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Total Artists in the Database:  1128"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# The Total number of Streams of an Artist }
+\NormalTok{streams}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x=}\NormalTok{spotify1}\SpecialCharTok{$}\NormalTok{Streams,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Artist),}\AttributeTok{FUN=}\NormalTok{sum)}
+    \FunctionTok{colnames}\NormalTok{(streams)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"Streams"}\NormalTok{)}
+\NormalTok{    streams}\OtherTok{\textless{}{-}}\NormalTok{streams[}\FunctionTok{order}\NormalTok{(streams}\SpecialCharTok{$}\NormalTok{Streams,}\AttributeTok{decreasing=}\NormalTok{T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{streams[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{Streams,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{Streams),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Streams"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Streams vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Number of Appearances of Artist in the \textquotesingle{}Corresponding Data\textquotesingle{}}
+\NormalTok{artistapp}\OtherTok{\textless{}{-}}\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Artist))}
+    \FunctionTok{colnames}\NormalTok{(artistapp)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"No.\_of\_Appearance\_in\_Top\_200\_Chart"}\NormalTok{)}
+\NormalTok{    artistapp}\OtherTok{\textless{}{-}}\NormalTok{artistapp[}\FunctionTok{order}\NormalTok{(artistapp}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{No.\_of\_Appearance\_in\_Top\_200\_Chart}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{decreasing=}\NormalTok{T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{artistapp[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{No.\_of\_Appearance\_in\_Top\_200\_Chart,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{No.\_of\_Appearance\_in\_Top\_200\_Chart),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Appearances"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Appearances vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#No. of days a song stays in Top 200.}
+\NormalTok{songs}\OtherTok{\textless{}{-}}\NormalTok{spotify}\SpecialCharTok{$}\NormalTok{Track.Name}
+\NormalTok{    artname}\OtherTok{\textless{}{-}}\NormalTok{spotify[spotify1}\SpecialCharTok{$}\NormalTok{Track.Name}\SpecialCharTok{==}\NormalTok{songs,]}\SpecialCharTok{$}\NormalTok{Artist}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(}\StringTok{"Artist"}\OtherTok{=}\NormalTok{artname,}\StringTok{"Song"}\OtherTok{=}\NormalTok{songs)}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x=}\NormalTok{days}\SpecialCharTok{$}\NormalTok{Song,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(days}\SpecialCharTok{$}\NormalTok{Artist,days}\SpecialCharTok{$}\NormalTok{Song),}\AttributeTok{FUN=}\NormalTok{length)}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\FunctionTok{as.data.frame}\NormalTok{(days)}
+    \FunctionTok{colnames}\NormalTok{(days)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"Song"}\NormalTok{,}\StringTok{"No.\_of\_Days"}\NormalTok{)}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\NormalTok{days[}\FunctionTok{order}\NormalTok{(days}\SpecialCharTok{$}\NormalTok{No.\_of\_Days,}\AttributeTok{decreasing=}\NormalTok{T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{days[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Song,}\AttributeTok{y=}\NormalTok{No.\_of\_Days,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{No.\_of\_Days),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Songs"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Days in Top 200 Chart"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Days in Top 200 Chart vs Songs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#No. of days a song stays at No. 1 in Top 200 Charts.}
+\NormalTok{top}\OtherTok{\textless{}{-}}\NormalTok{spotify[spotify1}\SpecialCharTok{$}\NormalTok{Position}\SpecialCharTok{==}\DecValTok{1}\NormalTok{,]}
+\NormalTok{    numeruno}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x=}\NormalTok{top}\SpecialCharTok{$}\NormalTok{Position,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(top}\SpecialCharTok{$}\NormalTok{Track.Name,top}\SpecialCharTok{$}\NormalTok{Artist),}\AttributeTok{FUN=}\NormalTok{sum)}
+    \FunctionTok{colnames}\NormalTok{(numeruno)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Song"}\NormalTok{,}\StringTok{"Artist"}\NormalTok{,}\StringTok{"Days\_at\_1"}\NormalTok{)}
+\NormalTok{    numeruno}\OtherTok{\textless{}{-}}\NormalTok{numeruno[}\FunctionTok{order}\NormalTok{(numeruno}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Days\_at\_1}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{decreasing =}\NormalTok{ T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{numeruno[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Song,}\AttributeTok{y=}\NormalTok{Days\_at\_1,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{Days\_at\_1),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Songs"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Days at \#1"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Days at \#1 vs Songs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#  Artists with most No. 1 songs}
+\NormalTok{mostnumerunos}\OtherTok{\textless{}{-}}\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(numeruno}\SpecialCharTok{$}\NormalTok{Artist))}
+    \FunctionTok{colnames}\NormalTok{(mostnumerunos)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"No.\_of\_Songs\_at\_1"}\NormalTok{)}
+\NormalTok{    mostnumerunos}\OtherTok{\textless{}{-}}\NormalTok{mostnumerunos[}\FunctionTok{order}\NormalTok{(mostnumerunos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{No.\_of\_Songs\_at\_1}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{decreasing =}\NormalTok{ T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{mostnumerunos[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{No.\_of\_Songs\_at\_1,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{No.\_of\_Songs\_at\_1),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"No. of songs at \#1"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"No. of songs at \#1 vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Year 2019 in a Nutshell}
+    
+    \FunctionTok{paste}\NormalTok{(}\StringTok{"Total Songs that featured in Top 200 in 2019: "}\NormalTok{,}\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Track.Name)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Total Songs that featured in Top 200 in 2019:  5497"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \FunctionTok{paste}\NormalTok{(}\StringTok{"Total Artists that featured in Top 200 in 2019: "}\NormalTok{,}\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Artist)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Total Artists that featured in Top 200 in 2019:  1128"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    streams}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x=}\NormalTok{spotify1}\SpecialCharTok{$}\NormalTok{Streams,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Artist),}\AttributeTok{FUN=}\NormalTok{sum)}
+    \FunctionTok{colnames}\NormalTok{(streams)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"Streams"}\NormalTok{)}
+\NormalTok{    streams}\OtherTok{\textless{}{-}}\NormalTok{streams[}\FunctionTok{order}\NormalTok{(streams}\SpecialCharTok{$}\NormalTok{Streams,}\AttributeTok{decreasing=}\NormalTok{T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{streams[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{Streams,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{Streams),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Streams"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Streams vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    artistapp}\OtherTok{\textless{}{-}}\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Artist))}
+    \FunctionTok{colnames}\NormalTok{(artistapp)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"No.\_of\_Appearance\_in\_Top\_200\_Chart"}\NormalTok{)}
+\NormalTok{    artistapp}\OtherTok{\textless{}{-}}\NormalTok{artistapp[}\FunctionTok{order}\NormalTok{(artistapp}\SpecialCharTok{$}\NormalTok{No.\_of\_Appearance\_in\_Top\_200\_Chart,}\AttributeTok{decreasing=}\NormalTok{T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{artistapp[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{No.\_of\_Appearance\_in\_Top\_200\_Chart,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{No.\_of\_Appearance\_in\_Top\_200\_Chart),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Appearances"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Appearances vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-9-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    songs}\OtherTok{\textless{}{-}}\NormalTok{spotify1}\SpecialCharTok{$}\NormalTok{Track.Name}
+\NormalTok{    artname}\OtherTok{\textless{}{-}}\NormalTok{spotify1[spotify1}\SpecialCharTok{$}\NormalTok{Track.Name}\SpecialCharTok{==}\NormalTok{songs,]}\SpecialCharTok{$}\NormalTok{Artist}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(}\StringTok{"Artist"}\OtherTok{=}\NormalTok{artname,}\StringTok{"Song"}\OtherTok{=}\NormalTok{songs)}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x=}\NormalTok{days}\SpecialCharTok{$}\NormalTok{Song,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(days}\SpecialCharTok{$}\NormalTok{Artist,days}\SpecialCharTok{$}\NormalTok{Song),}\AttributeTok{FUN=}\NormalTok{length)}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\FunctionTok{as.data.frame}\NormalTok{(days)}
+    \FunctionTok{colnames}\NormalTok{(days)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"Song"}\NormalTok{,}\StringTok{"No.\_of\_Days"}\NormalTok{)}
+\NormalTok{    days}\OtherTok{\textless{}{-}}\NormalTok{days[}\FunctionTok{order}\NormalTok{(days}\SpecialCharTok{$}\NormalTok{No.\_of\_Days,}\AttributeTok{decreasing=}\NormalTok{T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{days[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Song,}\AttributeTok{y=}\NormalTok{No.\_of\_Days,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{No.\_of\_Days),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Songs"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Days in Top 200 Chart"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Days in Top 200 Chart vs Songs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-9-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    top}\OtherTok{\textless{}{-}}\NormalTok{spotify1[spotify1}\SpecialCharTok{$}\NormalTok{Position}\SpecialCharTok{==}\DecValTok{1}\NormalTok{,]}
+\NormalTok{    numeruno}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x=}\NormalTok{top}\SpecialCharTok{$}\NormalTok{Position,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(top}\SpecialCharTok{$}\NormalTok{Track.Name,top}\SpecialCharTok{$}\NormalTok{Artist),}\AttributeTok{FUN=}\NormalTok{sum)}
+    \FunctionTok{colnames}\NormalTok{(numeruno)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Song"}\NormalTok{,}\StringTok{"Artist"}\NormalTok{,}\StringTok{"Days\_at\_1"}\NormalTok{)}
+\NormalTok{    numeruno}\OtherTok{\textless{}{-}}\NormalTok{numeruno[}\FunctionTok{order}\NormalTok{(numeruno}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{Days\_at\_1}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{decreasing =}\NormalTok{ T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{numeruno[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Song,}\AttributeTok{y=}\NormalTok{Days\_at\_1,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{Days\_at\_1),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Songs"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Days at \#1"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Days at \#1 vs Songs"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-9-4.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    mostnumerunos}\OtherTok{\textless{}{-}}\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{table}\NormalTok{(numeruno}\SpecialCharTok{$}\NormalTok{Artist))}
+    \FunctionTok{colnames}\NormalTok{(mostnumerunos)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"No.\_of\_Songs\_at\_1"}\NormalTok{)}
+\NormalTok{    mostnumerunos}\OtherTok{\textless{}{-}}\NormalTok{mostnumerunos[}\FunctionTok{order}\NormalTok{(mostnumerunos}\SpecialCharTok{$}\StringTok{\textasciigrave{}}\AttributeTok{No.\_of\_Songs\_at\_1}\StringTok{\textasciigrave{}}\NormalTok{,}\AttributeTok{decreasing =}\NormalTok{ T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{mostnumerunos[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{No.\_of\_Songs\_at\_1,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{No.\_of\_Songs\_at\_1),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"No. of songs at \#1"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"No. of songs at \#1 vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-9-5.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    numerunodays}\OtherTok{\textless{}{-}}\FunctionTok{aggregate}\NormalTok{(}\AttributeTok{x=}\NormalTok{numeruno}\SpecialCharTok{$}\NormalTok{Days\_at\_1,}\AttributeTok{by=}\FunctionTok{list}\NormalTok{(numeruno}\SpecialCharTok{$}\NormalTok{Artist),}\AttributeTok{FUN=}\NormalTok{sum)}
+    \FunctionTok{colnames}\NormalTok{(numerunodays)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Artist"}\NormalTok{,}\StringTok{"Days\_at\_1"}\NormalTok{)}
+\NormalTok{    numerunodays}\OtherTok{\textless{}{-}}\NormalTok{numerunodays[}\FunctionTok{order}\NormalTok{(numerunodays}\SpecialCharTok{$}\NormalTok{Days\_at\_1,}\AttributeTok{decreasing=}\NormalTok{T),]}
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{numerunodays[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{Days\_at\_1,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{Days\_at\_1),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"Days at \#1"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Days at \#1 vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-9-6.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    art}\OtherTok{\textless{}{-}}\FunctionTok{unique}\NormalTok{(spotify1}\SpecialCharTok{$}\NormalTok{Artist)}
+\NormalTok{    count}\OtherTok{\textless{}{-}}\FunctionTok{numeric}\NormalTok{(}\FunctionTok{length}\NormalTok{(art))}
+    \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(art))\{}
+\NormalTok{      count[i]}\OtherTok{\textless{}{-}}\FunctionTok{length}\NormalTok{(}\FunctionTok{unique}\NormalTok{(spotify1[spotify1}\SpecialCharTok{$}\NormalTok{Artist}\SpecialCharTok{==}\NormalTok{art[i],}\FunctionTok{c}\NormalTok{(}\StringTok{"Track.Name"}\NormalTok{)]))}
+\NormalTok{    \}}
+\NormalTok{    artist}\OtherTok{\textless{}{-}}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Artist=}\NormalTok{art,}\AttributeTok{No.\_of\_Songs\_in\_Top\_200=}\NormalTok{count)}
+\NormalTok{    artist}\OtherTok{\textless{}{-}}\NormalTok{artist[}\FunctionTok{order}\NormalTok{(artist}\SpecialCharTok{$}\NormalTok{No.\_of\_Songs\_in\_Top\_200,}\AttributeTok{decreasing=}\NormalTok{T),]}
+
+    
+    \FunctionTok{ggplot}\NormalTok{(}\AttributeTok{data=}\NormalTok{artist[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,],}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x=}\NormalTok{Artist,}\AttributeTok{y=}\NormalTok{No.\_of\_Songs\_in\_Top\_200,}\AttributeTok{fill=}\NormalTok{Artist))}\SpecialCharTok{+}
+      \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat=}\StringTok{"Identity"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{geom\_text}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{label=}\NormalTok{No.\_of\_Songs\_in\_Top\_200),}\AttributeTok{vjust=}\SpecialCharTok{{-}}\FloatTok{0.2}\NormalTok{,}\AttributeTok{size=}\DecValTok{3}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{xlab}\NormalTok{(}\StringTok{"Artists"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ylab}\NormalTok{(}\StringTok{"No. of songs in Top 200"}\NormalTok{)}\SpecialCharTok{+}
+      \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"No. of songs in Top 200 vs Artists"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ExploreSpotifystreams_files/figure-latex/unnamed-chunk-9-7.pdf}
+
+\end{document}
